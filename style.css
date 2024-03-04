@@ -1,0 +1,180 @@
+@font-face {
+  font-family: 'WorkSans';
+  font-display: swap;
+  font-weight: 400 700;
+  src: url(assets/fonts/WorkSans-VariableFont_wght.ttf)
+  format('truetype');
+}
+
+:root {
+  --clr-white: hsl(0, 0%, 100%);
+  --clr-pink:hsl(275, 100%, 97%);
+  --clr-purple:hsl(292, 16%, 49%);
+  --clr-purple-dark: hsl(292, 42%, 14%);
+
+  --default-font-family: 'WorkSans';
+
+  --fs-1: 1rem;
+  --fs-2: 1.125rem;
+  --fs-3: 1.5rem;
+  --fs-4: 1.75rem;
+  --fs-5: 2rem;
+  --fs-6: 3.5rem;
+
+  --fw-400: 400;
+  --fw-600: 600;
+  --fw-700: 700;
+}
+
+* {
+  font:inherit;
+  margin: 0;
+  padding: 0;
+}
+
+*::before,
+*::after,
+* {
+  box-sizing: border-box;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+body {
+  font-family: var(--default-font-family);
+  min-height: 100vh;
+  background-image: url(assets/images/background-pattern-desktop.svg);
+  background-color: var(--clr-pink);
+  background-position: top;
+  background-repeat: no-repeat;
+
+  display: grid;
+  place-content: center center;
+  justify-items: center;
+}
+
+.flex-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grid-flow {
+  display: grid;
+  gap: 0;
+}
+
+main {
+  width: min(40rem, 87%);
+  color: var(--clr-purple-dark);
+  background-color: var(--clr-white);
+  border-radius: 1rem;
+  box-shadow: 0 5px 2rem #00000020,0 10px 4rem #00000010;
+  padding: 1rem 1.5rem;
+}
+
+header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+header h1 {
+  font-size: var(--fs-6);
+  font-weight: var(--fw-700);
+}
+
+.accordion-item {
+  position: relative;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #00000010;
+}
+
+.accordion-item:last-child {
+  border: none;
+}
+
+.accordion-header__h2 {
+  position: relative;
+  font-size: var(--fs-2);
+  font-weight: var(--fw-600);
+  cursor: pointer;
+}
+
+.accordion-header .accordion-header__icon {
+  content: url('assets/images/icon-plus.svg');
+}
+.accordion-header.active .accordion-header__icon {
+  content: url('assets/images/icon-minus.svg');
+  animation: spin 0.4s ease-in-out;
+}
+
+.accordion-header__h2:hover,
+.accordion-header__h2:focus {
+  color: #AD28EB;
+}
+
+.accordion-content {
+  position: relative;
+  max-height: 0;
+  scrollbar-width: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  transform-origin: top;
+  opacity: 0;
+  transition: all .5s ease-in;
+}
+
+.accordion-content p {
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.accordion-content.active {
+  max-height: 500px; /* You can set this value to a large number that is larger than the maximum height of your content */
+  opacity: 1;
+}
+
+/*|| scrollbar fix */
+
+.accordion-content {
+  overflow: auto;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.accordion-content::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Opera */
+}
+
+@media (max-width:500px) {
+  main {
+    border-radius: 0.5rem;
+  }
+  :root {
+    --fs-6: 3rem;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes spinBackwards {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-180deg);
+  }
+}
